@@ -1,0 +1,327 @@
+/* Style CSS */
+/* Default styles (for vertical mobiles) */
+* { /* All style */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} [data-theme = "light"] { /* Theme light */
+    --primary: rgb(30, 136, 229);
+    --background: rgb(255, 255, 255);
+    --card: rgb(255, 255, 255);
+    --secondary: rgb(162, 175, 185);
+    --text: rgb(27, 40, 50);
+} [data-theme = "dark"] { /* Theme dark */
+    --primary: rgb(30, 136, 229);
+    --background: rgb(17, 25, 31);
+    --card: rgb(20, 30, 38);
+    --secondary: rgb(55, 73, 86);
+    --text: rgb(255, 255, 255);
+} a { 
+    text-decoration: none;
+} li {
+    list-style: none;
+}
+
+/* Navigation style */
+#navigation {
+    border-bottom: var(--primary) solid 2px;
+    background-color: var(--background);
+    position: fixed;
+    padding: 0 5px;
+    top: 0;
+    width: 100%;
+} #newTask {
+    display: contents;
+} #btnOpenSideBar {
+    margin: auto 0;
+    transition: all 500ms linear;
+    cursor: pointer;
+} #btnOpenSideBar.active {
+    margin: auto 180px auto 0;
+}
+
+/* Side bar style */
+#sideBar {
+    border-left: var(--secondary) solid 1px;
+    background-color: var(--card);
+    width: 180px;
+    height: 100%;
+    position: fixed;
+    right: -580px;
+    transition: all 500ms linear;
+} #sideBar.active {
+    right: 0;
+} #sideBar>li {
+    margin: 10px;
+    cursor: pointer;
+    border-bottom: var(--secondary) solid 1px;
+    text-align: center;
+} #sideBar>#theme {
+    display: flex;
+    justify-content: center;    
+} #sideBar>#theme>p {
+    margin: 0 10px 6px 0;
+    cursor: default;
+    color: var(--text);
+}
+
+/* main conteiner style */
+#conteiner {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* form section style */
+#form {
+    width: 100%;
+    height: 100%;
+    bottom: -1000px;
+    transition: all 500ms linear;
+    position: fixed;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+} #form.active {
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .7);
+} #form>article {
+    margin: auto 0;
+    min-width: 310px;
+    max-width: 500px;
+    height: fit-content;
+} #form>article>section {
+    margin: 0;
+    text-align: center;
+} #form>article>section>button {
+    width: 110px;
+    margin: 0 5px;
+    display: inline-block;
+}
+
+#taskIndicator {
+    display: block;
+} #taskIndicator>div {
+    padding-bottom: 5px;
+} #taskIndicator>div>p {
+    margin: 0;
+} #taskCreated {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+} #taskCreated>p {
+    margin: 5px;
+}
+
+/* Tasks section style */
+#tasks {
+    padding: 80px 0 0 0;
+    width: 100%;
+} #tasks>article {
+    margin: 10px auto;
+    width: 310px;
+} #tasks>article>h4 {
+    margin-bottom: 5px;
+    border-bottom: var(--primary) solid 2px;
+} #tasks>article>p {
+    margin-bottom: 10px;
+} #tasks>article>section {
+    margin: 0;
+    text-align: center;
+} #tasks>article>section>button {
+    max-width: 50px;
+    max-height: 50px;
+    margin: 0 5px;
+    display: inline-block;
+}
+
+/* modals styles */
+.conteinerModal {
+    padding: 30px;
+    border: var(--primary) solid 2px;
+    border-radius: 25px;
+} #modalClearTasks::backdrop {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+/* Create the switch container  */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 17px;
+    margin: 0;
+} .switch>input { /* hide the checkbox */
+    display:none;
+} .slider { /* Formateamos la caja del interruptor sobre la cual se deslizará la perilla de control o slider */
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+} .slider:before { /* Pintamos la perilla de control o slider usando el selector before */
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+} input:checked + .slider { /* Cambiamos el color de fondo cuando el checkbox esta activado */
+    background-color: var(--primary);
+} input:checked + .slider:before { /* Deslizamos el slider a la derecha cuando el checkbox esta activado */ 
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
+} .slider.round { /* Aplicamos efecto de bordes redondeados en slider y en el fondo del slider */
+    border-radius: 34px;
+} .slider.round:before {
+    border-radius: 50%;
+}
+
+/* RESPONSIVE */
+/* Horizontal phones or vertical tablets */
+@media only screen and (min-width: 768px) {
+    #conteiner {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+    }
+
+    #tasks {
+        display: flex;
+        flex-wrap: wrap;
+        width: 660px;
+    } #tasks>article {
+        margin: 10px 10px 10px 10px;
+        width: 310px;
+    } #tasks>article>section>button {
+        max-width: 55px;
+        max-height: 55px;
+        margin: 0 5px;
+        display: inline-block;
+    }
+
+    #sideBar {
+    width: 200px;
+    right: -200px;
+    } #btnOpenSideBar.active {
+        margin: auto 200px auto 0;
+    }
+
+}
+ 
+/* Tablets en horizonal y escritorios normales */
+@media only screen and (min-width: 1024px) {
+    #taskIndicator {
+        display: none;
+    } #taskIndicator>div {
+        padding-bottom: 5px;
+    } #taskIndicator>div>p {
+        margin: 0;
+    } #taskCreated {
+        display: block;
+    }
+
+    .switch {
+        width: 45px;
+        height: 25.5px;
+    } .slider:before { /* Pintamos la perilla de control o slider usando el selector before */
+        height: 19.5px;
+        width: 19.5px;
+        left: 3px;
+        bottom: 3px;
+    } input:checked + .slider:before { /* Deslizamos el slider a la derecha cuando el checkbox esta activado */ 
+        -webkit-transform: translateX(19.5px);
+        -ms-transform: translateX(19.5px);
+        transform: translateX(19.5px);
+    }
+}
+ 
+/* Escritorios muy anchos */
+@media only screen and (min-width: 1200px) {
+    #newTask {
+        display: none;
+    }
+
+    #sideBar {
+        width: 300px;
+        right: -300px;
+    } #sideBar.active {
+        right: 0;
+    } #sideBar>li {
+        margin: 10px 20px;
+        cursor: pointer;
+        border-bottom: var(--secondary) solid 1px;
+    } #sideBar>#theme {
+        display: flex;
+        justify-content: center;
+    } #sideBar>#theme>ul {
+        margin: 0;
+    } #sideBar>#theme>ul>p {
+        margin: 0 10px 0 0;
+        cursor: default;
+    } #btnOpenSideBar.active {
+        margin: auto 300px auto 0;
+    }
+
+    #conteiner {
+        justify-content: unset;
+    }
+
+    #form {
+        max-width: 400px;
+        margin: 0;
+        bottom: 0;
+        display: block;
+        transition: none;
+        position: static;
+        margin: 85px 80px 0 80px;
+    } #form>article {
+        margin: 0;
+        width: 400px;
+    } #form>article>section {
+        margin: 0;
+        text-align: center;
+    } #form>article>section>button {
+        width: 100%;
+        margin: 0;
+    } #form>article>section>#cancelTask {
+        display: none;
+    }
+
+    #tasks {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 80px 0 0 0;
+        width: 800px;
+    } #tasks>article {
+        margin: 10px 5px 10px 5px;
+        width: 335px;
+    } #tasks>article>section>button {
+        min-width: 70px;
+        min-height: 70px;
+    }
+
+    .switch {
+        width: 60px;
+        height: 34px;
+    } .slider:before { /* Pintamos la perilla de control o slider usando el selector before */
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+    } input:checked + .slider:before { /* Deslizamos el slider a la derecha cuando el checkbox esta activado */ 
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+}

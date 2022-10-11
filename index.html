@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang = "en" data-theme = "dark">
+
+    <!-- Head -->
+    <head>
+
+        <!-- Meta section -->
+        <meta charset = "UTF-8" />
+        <meta name = "viewport" content = "width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name = "keywords" content = "Task, To-Do, Productivity, Organization" />
+        <meta name = "robots" content = "index, follow" />
+        <meta name = "author" content = "VidalGB" />
+        <meta name = "description" content = "This is To-Do application in the browser, easy and fast." />
+        <meta name = "copyright" content = "Copyright by VidalGB" />
+
+        <title>To-Do | Tasks App</title>
+
+        <!-- Pico css-->
+        <link rel = "stylesheet" href = "https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
+        
+        <!-- Font awesome icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="errorIcon()"/>
+
+        <!-- Custom css-->
+        <link rel = "stylesheet" href = "./style.css"/>
+    </head>
+
+    <!-- Body -->
+    <body>
+
+        <!-- Navigation section -->
+        <nav id = "navigation">
+            <ul>
+                <li>
+                    <a class = "contrast" href="#conteiner"><strong>Tasks App</strong></a>
+                </li>
+                <li>
+                    <a id="newTask" class = "contrast"><i class="fa-solid fa-plus"></i></a>
+                </li>
+            </ul>
+                <a class = "contrast" id = "btnOpenSideBar"><i class="fa-solid fa-bars"></i></a>
+        </nav>
+        
+        <!-- Side bar -->
+        <div id="sideBar">
+
+            <!-- Theme element -->
+            <li id = 'theme'>
+                <p>Theme Dark</p>
+                <label class="switch">
+                    <input type="checkbox" id = 'switchTheme' checked>
+                    <div class="slider round"></div>
+                </label>
+            </li>
+
+            <!-- Open modal button -->
+            <li>
+                <a class = "contrast" id = "btnOpenModal"><i class="fa-solid fa-trash" ></i> Delete all tasks</a>
+            </li>
+
+            <!-- Task Indicator -->
+            <li id="taskIndicator">
+                <div class = "contrast">
+                    <p id="createdTask">0/150 Tasks</p>
+                </div>
+            </li>
+        </div>
+
+        <!-- Main section -->
+        <div id = "conteiner">
+
+            <!-- Form section -->
+            <section id = "form">
+                <article>
+                    <form id = "formTasks" onsubmit="event.preventDefault();">
+
+                        <!-- Input task title -->
+                        <input type = "text" id = "title" placeholder = "Add a To-Do" autofocus autocomplete="off" onkeypress="nextFocus('title', 'description')"/>
+
+                        <!-- Input task description -->
+                        <input type = "text" id = "description" placeholder = "Add a Description..." autocomplete = "off" onkeypress="nextFocus('description', '')"/>
+                    </form>
+
+                    <!-- Buttons task section -->
+                    <section>
+                        <button class = "secondary" id = "cancelTask">Cancel</button>
+                        <button id = "btnSaveTask" disabled="true">Save <i class="fa-solid fa-floppy-disk"></i></button>
+                    </section>
+                </article>
+            </section>
+
+            <div class = "secondarys" id="taskCreated">
+                <p class = "secondary" id="createdTask2">0/150 Tasks</p>
+            </div>
+
+            <!-- Tasks section -->
+            <section id = "tasks"></section>
+        </div>
+
+        <!-- Modal section -->
+        <!-- Clear tasks modal -->
+        <dialog id = "modalClearTasks">
+            <article class = "conteinerModal">
+                <h2>Delate all Tasks</h2>
+                <button id = "btnCancelModal">Cancel</button>
+                <button id = "btnOkeyModal" class = "secondary">Ok</button>
+            </article>
+        </dialog>
+
+        <!-- Modal on full localStorage -->
+        <dialog id = "modalFullLocalStorage">
+            <article class = "conteinerModal">
+                <h2>Full Storage</h2>
+                <button id = "btnOkFullStorageModal">Ok</button>
+            </article>
+        </dialog>
+
+        <!-- LocalStorge error modal -->
+        <dialog id = "modalErrorLocalStorage" data-keyboard="false">
+            <article class = "conteinerModal">
+                <h1>Sorry, this page is not compatible with your browser &#1F615</h1>
+            </article>
+        </dialog>
+    
+    <!-- Scripts -->
+    <script src = "./app.js"></script>
+    </body>
+</html>
